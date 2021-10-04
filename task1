@@ -7,3 +7,70 @@ import seaborn as sns
 #reading the data file
 df=pd.read_csv("https://raw.githubusercontent.com/AdiPersonalWorks/Random/master/student_scores%20-%20student_scores.csv")
 df
+#to get the first five row of dataset
+df.head()
+#checking the number of rows and coloumns in dataset
+df.shape()
+#checking if there are any null values in the dataset
+df.isnull().transpose()
+#plotting the distribution of scores
+df.plot(x='Hours',y='Scores',style='o')
+plt.title('Hours vs Percentage')
+plt.xlabel(Hours Studied)
+plt.ylabel(Percentage Score)
+plt.show()
+#to show pairwise relation in a dataset
+sns.pairplot(df)
+#x and y arrays
+x=df['Hours']
+y=df['Scores']
+#to perform test-train split
+from sklearn.model_selection import train_test_split
+x_train,x_tes,y_train,y_test=train_test_split(X,Y,train_size=0.8,test_size=0.2,random_state=100)
+#to find the first five rows of Hours training dataframe
+X_train.head()
+#to find the first five rows of Scores training dataframe
+Y_train.head()
+#number of dimensions in array
+print(X_train.shape)
+print(X_test.shape)
+print(Y_train.shape)
+print(Y_test.shape)
+a=pd.Dataframe(X_train)
+b=a.values.reshape(-1,1)
+X_train=pd.Dataframe(b)
+a=pd.Dataframe(X_test)
+b=a.values.reshape(-1,1)
+X_test=pd.Dataframe(b)
+print(X_train)
+print(X_test)
+print(Y_train)
+print(Y_test)
+#to perform linear regression
+from slearn.linear_model import LinearRegression
+lr=LinearRegression()
+lr.fit(X_train,Y_train)
+#printing intercept and coefficient
+print(lr.intercept_)
+print(lr.coef_)
+#to plot regression plot
+sns.regplot(X,Y)
+plt.show()
+print(df.corr())
+#testing data
+print(X_test)
+#predicting scores
+y_pred=lr.predict(X_test)
+#comparing Actuaal and Predicted
+df=pd.Dataframe({'Actual':Y_test,'Prediction':y_pred})
+df
+df.plot(kind='bar')
+plt.title('Actual vs Predicted')
+plt.show()
+#to find MEAN ABSOLUTE ERROR
+from sklearn import metrics as m
+print('Mean Absolute Error:',m.mean_absolute_error(Y_test,y_pred))
+#what will be predicted if a student studies 9.25 hrs/day
+hours=[[9.25]]
+pred_scores=lr.predict(hours)
+print('Predicted score is:',pred_scores)
