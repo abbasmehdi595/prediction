@@ -1,0 +1,9 @@
+#importing libraries
+import numpy as np
+import panda as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#reading the data file
+df=pd.read_csv("https://raw.githubusercontent.com/AdiPersonalWorks/Random/master/student_scores%20-%20student_scores.csv")
+df
